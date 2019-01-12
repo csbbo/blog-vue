@@ -18,10 +18,6 @@
         <li><router-link to="/">我的主页</router-link></li>
         <li><router-link to="/friends">友情链接</router-link></li>
         <li><router-link to="/list">所有文章</router-link></li>
-        <!-- <li><a href="">我的主页</a></li>
-        <li><a href="">个人简介</a></li>
-        <li><a href="">友情链接</a></li>
-        <li><a href="">所有文章</a></li> -->
     </ul>
     <hr>
     <div class="application">
@@ -166,13 +162,16 @@
     justify-content: space-around;
     margin: 0% 10%;
     margin-top: 10px;
+    height: 30px;
 }
 .daliy .application a img{
     width: 25px;
     border-radius: 100%;
+    transition:width 0.1s;
+    -webkit-transition:width 0.1s;
 }
 .daliy .application a img:hover{
-    box-shadow: 1px 1px 1px #999;
+    width: 32px;
 }
 /* tags */
 .tags .tag-head{
@@ -245,14 +244,20 @@
 }
 .extension .extension-item ul li{
     padding: 2px 5px;
+    border: 1px solid #ffffff;
+    transition: border 1s;
+    -webkit-transition: border 1s;
 }
-.extension .extension-item ul li a:hover{
-    color: #000;
+.extension .extension-item ul li:hover{
+    border: 1px solid #555;
 }
 .extension .extension-item ul li a{
+    display: block;
+    width: 100%;
     color: #555;
     padding-bottom: 2px;
-    border-bottom: 1px solid #444;
+    transition: color 0.5s;
+    -webkit-transition: color 0.5s;
 }
 /* website */
 .website .website-head{
@@ -274,17 +279,16 @@
     padding-bottom: 10px;
 }
 .website .website-item ul li{
-    background-color: #bbb;
+    background-color: #777;
     padding: 2px;
     margin: 2px;
+    transition: background-color 1s;
+    -webkit-transition: background-color 1s;
 }
 .website .website-item ul li:hover{
-    box-shadow:2px 2px 1px #999;
+    background-color: #222;
 }
 .website .website-item ul li a{
-    color: #555;
-}
-.website .website-item ul li a:hover{
-    color: #222;
+    color: #ffffff;
 }
 </style>

@@ -16,7 +16,7 @@
             <hr>
             <div class="tail">
                 <div class="tags">
-                    <i class="material-icons">loyalty</i>
+                    <i class="material-icons shake-little">loyalty</i>
                     <div class="tag">jQuery</div>
                     <div class="tag">jQuery</div>
                     <div class="tag">jQuery</div>
@@ -128,11 +128,11 @@
             <hr>
             <div class="tail">
                 <div class="tags">
-                    <i class="material-icons">loyalty</i>
-                    <div class="tag shake-little">jQuery</div>
-                    <div class="tag shake-little">jQuery</div>
-                    <div class="tag shake-little">jQuery</div>
-                    <div class="tag shake-little">jQuery</div>
+                    <i class="material-icons shake-little">loyalty</i>
+                    <div class="tag">jQuery</div>
+                    <div class="tag">jQuery</div>
+                    <div class="tag">jQuery</div>
+                    <div class="tag">jQuery</div>
                 </div>
                 <div class="show-all">
                     <span>展开全文</span>

@@ -64,6 +64,7 @@
 }
 .year .this-year{
     font-size: 30px;
+    color: #999;
     float: left;
 }
 .year ul{
@@ -75,6 +76,14 @@
     padding: 6px 5px;
     display: flex;
     flex-direction: column;
+    transition: transform 1s;
+    -webkit-transition: -webkit-transform 1s;
+}
+.year ul li:hover{
+    border-bottom: none;
+    background-color: #eee;
+    transform: rotateX(40deg);
+    -webkit-transform: rotateX(40deg);
 }
 .year ul li .top{
     display: flex;
@@ -117,9 +126,6 @@
     float: left;
     margin-top: 6px;
     margin-right: 5px;
-}
-.year ul li:hover{
-    box-shadow: 1px 1px 2px #999;
 }
 </style>
 

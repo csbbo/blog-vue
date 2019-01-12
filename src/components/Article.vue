@@ -116,6 +116,8 @@ hr{
     flex-direction: row;
     justify-content: space-between;
     color: #000;
+    transition: color 1s;
+    -webkit-transition: color 1s;
 }
 .left-article:hover,.right-article:hover{
     color: #08c;

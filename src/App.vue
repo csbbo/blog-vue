@@ -69,6 +69,8 @@ body{
     position: fixed;
     bottom: 40px;
     right: 44px;
+    transition:color 1s;
+	-webkit-transition:background-color 1s; /* Safari */
 }
 .back-top:hover{
     background-color: #424242;
