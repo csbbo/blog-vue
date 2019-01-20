@@ -10,9 +10,7 @@
     </div>
 </div>
 <div class="daliy">
-    <span>
-        要站在人类大多数的一边才不会被看作异类，遵循人们生活规律的轨迹才会被人类社会容纳。
-    </span> 
+    <span>{{daliy.note}}</span> 
     <hr>
     <ul>
         <li><router-link to="/">我的主页</router-link></li>
@@ -29,8 +27,8 @@
 <div class="tags" style="margin-top:20px;">
     <div class="tag-head">
         <div class="input">
-            <input type="text">
-            <div class="input-search">
+            <input ref="search" @keyup.enter="search()" type="text">
+            <div @click="search()" class="input-search">
                 <i class="material-icons">search</i>
             </div>
         </div>
@@ -38,26 +36,11 @@
     <!-- <hr> -->
     <div class="tag-items">
         <ul>
-            <li class="shake-slow"><i><a href="">Django</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:30px">MQTT</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:10px">Django</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:20px">Nginx</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:5px">Django</a></i></li>
-            <li class="shake-slow"><i><a href="">Django</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:30px">MQTT</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:10px">Django</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:20px">Nginx</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:5px">Django</a></i></li>
-            <li class="shake-slow"><i><a href="">Django</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:30px">MQTT</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:10px">Django</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:20px">Nginx</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:5px">Django</a></i></li>
-            <li class="shake-slow"><i><a href="">Django</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:30px">MQTT</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:10px">Django</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:20px">Nginx</a></i></li>
-            <li class="shake-slow"><i><a href="" style="font-size:5px">Django</a></i></li>
+            <li v-on:click="tagSearch(tag.name)" v-for="tag in tags" :key="tag" class="shake-slow">
+                <i>
+                    <a>{{tag.name}}</a>
+                </i>
+            </li>
         </ul>
     </div>
 </div>
@@ -82,15 +65,72 @@
     <hr>
     <div class="website-item">
         <ul>
-            <li><a href="">有道minQ</a></li>
-            <li><a href="">calculator</a></li>
-            <li><a href="">MQTT</a></li>
-            <li><a href="">入侵检测警报系统</a></li>
+            <li v-for="item in website" :key="item.id">
+                <a target="_blank" :href="item.url">{{item.name}}</a>
+            </li>
         </ul>
     </div>
 </div>
 </div>
 </template>
+
+<script>
+/* eslint-disable */
+export default {
+    data(){
+        return{
+            tags:[],
+            website:[],
+            daliy:{},
+        }
+    },
+    created: function(){
+        var url = this.GLOBAL.host + "/tags"
+        this.$http({
+            url:url,
+            methods:'GET',
+        }).then(function(res){
+            this.tags = res.body
+        },function(err){})
+
+        url = this.GLOBAL.host + "/website"
+        this.$http({
+            url:url,
+            methods:'GET',
+        }).then(function(res){
+            this.website = res.body
+        },function(err){})
+
+        url = "http://open.iciba.com/dsapi/"
+        this.$jsonp(url).then(json=>{
+            this.daliy = json
+        }).catch(err=>{})
+    },
+    methods: {
+        search(){
+            if(this.$refs.search.value != ""){
+                this.$router.push({
+                    path: '/list',
+                    query: {
+                        search: this.$refs.search.value
+                    }
+                })
+                this.$refs.search.value = ""
+            }else{
+                alert("搜索不能为空")
+            }
+        },
+        tagSearch(tag){
+            this.$router.push({
+                path: '/list',
+                query: {
+                    tag: tag
+                }
+            })
+        }
+    }
+}
+</script>
 
 <style scoped>
 

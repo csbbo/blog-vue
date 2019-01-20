@@ -11,9 +11,9 @@
         </div>
     </div>
     <div class="copyright">
-        <div class="left shake-chunk">© 2019  csbbo</div>
-        <div class="right shake-chunk">New blog imitate Hexo</div>
+        <div class="shake-chunk">© 2019  csbbo</div>
     </div>
+
     <div class="back-top">
         <a href="#"><i class="material-icons">keyboard_arrow_up</i></a>
     </div>
@@ -58,10 +58,9 @@ body{
 }
 .copyright{
     color: #999;
-    margin: 0% 30%;
+    margin: auto;
     margin-bottom: 10px;
 }
-
 .back-top{
     background-color: #4242423f;
     width: 45px;

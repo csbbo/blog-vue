@@ -10,6 +10,7 @@
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "vue": "^2.5.21",
+    "vue-jsonp": "^0.1.8",
     "vue-markdown": "^2.2.4",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.2"

@@ -1,37 +1,36 @@
 <template>
     <div class="friends">
-        <div class="block shake-slow">
-            <span>阮一峰的博客</span>
-        </div>
-        <div class="block shake-slow">
-            阮一峰的博客
-        </div>
-        <div class="block shake-slow">
-            阮一峰
-        </div>
-        <div class="block shake-slow">
-            阮一峰的博客
-        </div>
-        <div class="block shake-slow">
-            阮一峰的博客
-        </div>
-        <div class="block shake-slow">
-            阮一峰
-        </div>
-        <div class="block shake-slow">
-            阮一峰的博客阮一峰的博客
-        </div>
-        <div class="block shake-slow">
-            阮一峰的博客
-        </div>
-        <div class="block shake-slow">
-            阮一峰的博客
-        </div>
-        <div class="block shake-slow">
-            阮一峰的博客
+        <div v-for="friend in friends" :key="friend.id" class="block shake-slow">
+            <a target="_blank" :href="friend.url"><span>{{friend.name}}</span></a>
         </div>
     </div>
 </template>
+
+<script>
+/* eslint-disable */
+export default {
+    data(){
+        return {
+            friends:[],
+        }
+    },
+    created:function(){
+        this.getFriends()
+    },
+    methods:{
+        getFriends(){
+            var url = this.GLOBAL.host + "/friend/"
+            this.$http({
+                url:url,
+                methods:'GET',
+            }).then(res=>{
+                this.friends = res.body
+                console.log(res.body)
+            },err=>{})
+        }
+    }
+}
+</script>
 
 <style scoped>
 .friends{
@@ -39,7 +38,7 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
-.block{
+.block a{
     background-color: #999;
     color: #ffffff;
     width: 100px;

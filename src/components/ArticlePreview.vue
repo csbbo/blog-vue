@@ -1,148 +1,68 @@
 <template>
     <div class="article-preview">
-        <div class="items">
-            <div class="head">
+        <div v-for="article in articleList" :key="article.id" class="items">
+            <div @click="getArticle(article.id)" class="head">
                 <div class="title">
-                    esp8266 & 舵机
+                    {{article.title}}
                 </div>
                 <div class="cal">
                     <i class="material-icons">date_range</i>
-                    <span>2019-1-10</span>
+                    <span>{{article.create_time}}</span>
                 </div>
             </div>
             <div class="body">
-                2017年10月27日早晨刚起正要去打卡，大霾笼罩了整片天地，去年的冬天也是如此，但我还是感到很惊讶，这一年来新闻报道总说将雾霾控制到什么地步，哪些方面加大了多少监管力度。所以我相信了，我知道会有雾霾，只是我一厢情愿相信今年情况会好一些。
+                {{article.content}}
             </div>
             <hr>
             <div class="tail">
                 <div class="tags">
                     <i class="material-icons shake-little">loyalty</i>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
+                    <div v-for="tag in article.tags" :key="tag" class="tag">{{tag}}</div>
                 </div>
                 <div class="show-all">
-                    <span>展开全文</span>
+                    <span @click="getArticle(article.id)">展开全文</span>
                     <i class="material-icons">more_horiz</i>
                 </div>
             </div>
         </div>
-        <div class="items">
-            <div class="head">
-                <div class="title">
-                    esp8266 & 舵机
-                </div>
-                <div class="cal">
-                    <i class="material-icons">date_range</i>
-                    <span>2019-1-10</span>
-                </div>
-            </div>
-            <div class="body">
-                2017年10月27日早晨刚起正要去打卡，大霾笼罩了整片天地，去年的冬天也是如此，但我还是感到很惊讶，这一年来新闻报道总说将雾霾控制到什么地步，哪些方面加大了多少监管力度。所以我相信了，我知道会有雾霾，只是我一厢情愿相信今年情况会好一些。
-            </div>
-            <hr>
-            <div class="tail">
-                <div class="tags">
-                    <i class="material-icons">loyalty</i>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
-                </div>
-                <div class="show-all">
-                    <span>展开全文</span>
-                    <i class="material-icons">more_horiz</i>
-                </div>
-            </div>
-        </div>
-        <div class="items">
-            <div class="head">
-                <div class="title">
-                    esp8266 & 舵机
-                </div>
-                <div class="cal">
-                    <i class="material-icons">date_range</i>
-                    <span>2019-1-10</span>
-                </div>
-            </div>
-            <div class="body">
-                2017年10月27日早晨刚起正要去打卡，大霾笼罩了整片天地，去年的冬天也是如此，但我还是感到很惊讶，这一年来新闻报道总说将雾霾控制到什么地步，哪些方面加大了多少监管力度。所以我相信了，我知道会有雾霾，只是我一厢情愿相信今年情况会好一些。
-            </div>
-            <hr>
-            <div class="tail">
-                <div class="tags">
-                    <i class="material-icons">loyalty</i>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
-                </div>
-                <div class="show-all">
-                    <span>展开全文</span>
-                    <i class="material-icons">more_horiz</i>
-                </div>
-            </div>
-        </div>
-        <div class="items">
-            <div class="head">
-                <div class="title">
-                    esp8266 & 舵机
-                </div>
-                <div class="cal">
-                    <i class="material-icons">date_range</i>
-                    <span>2019-1-10</span>
-                </div>
-            </div>
-            <div class="body">
-                2017年10月27日早晨刚起正要去打卡，大霾笼罩了整片天地，去年的冬天也是如此，但我还是感到很惊讶，这一年来新闻报道总说将雾霾控制到什么地步，哪些方面加大了多少监管力度。所以我相信了，我知道会有雾霾，只是我一厢情愿相信今年情况会好一些。
-            </div>
-            <hr>
-            <div class="tail">
-                <div class="tags">
-                    <i class="material-icons">loyalty</i>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
-                </div>
-                <div class="show-all">
-                    <span>展开全文</span>
-                    <i class="material-icons">more_horiz</i>
-                </div>
-            </div>
-        </div>
-        <div class="items">
-            <div class="head">
-                <div class="title">
-                    esp8266 & 舵机
-                </div>
-                <div class="cal">
-                    <i class="material-icons">date_range</i>
-                    <span>2019-1-10</span>
-                </div>
-            </div>
-            <div class="body">
-                2017年10月27日早晨刚起正要去打卡，大霾笼罩了整片天地，去年的冬天也是如此，但我还是感到很惊讶，这一年来新闻报道总说将雾霾控制到什么地步，哪些方面加大了多少监管力度。所以我相信了，我知道会有雾霾，只是我一厢情愿相信今年情况会好一些。
-            </div>
-            <hr>
-            <div class="tail">
-                <div class="tags">
-                    <i class="material-icons shake-little">loyalty</i>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
-                    <div class="tag">jQuery</div>
-                </div>
-                <div class="show-all">
-                    <span>展开全文</span>
-                    <i class="material-icons">more_horiz</i>
-                </div>
-            </div>
-        </div>
-        <!--  -->
     </div>
 </template>
+
+<script>
+/* eslint-disable */
+export default {
+    data(){
+        return{
+            articleList: [],
+        }
+    },
+    created: function(){
+        var url = this.GLOBAL.host + "/article"
+        var re = /^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})\.(.*)$/
+        this.$http({
+            url:url,
+            methods:'GET',
+        }).then(res=>{
+            this.articleList = res.body
+            for(var x=0;x<this.articleList.length;x++){
+                this.articleList[x].create_time = re.exec(this.articleList[x].create_time)[1]
+            }
+        },err=>{})
+    },
+    methods: {
+        getArticle(id){
+            this.$router.push({
+                path: '/article',
+                query: {
+                    id: id
+                }
+            })
+        }
+    }
+
+}
+</script>
+
 <style scoped>
 .items{
     background-color: #ffffff;
@@ -213,8 +133,16 @@ hr{
     color: #ffffff;
     display: flex;
     flex-direction: row;
-    padding: 0% 5px;
+    padding: 0px 5px;
+    padding-top: 2px;
     border-radius: 2px;
+    font-size: 12px;
+    height: 21px;
+    transition: background-color 0.5s;
+    -webkit-transition: background-color 0.5s;
+}
+.tail .show-all:hover{
+    background-color: #222;
 }
 </style>
 
