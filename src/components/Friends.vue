@@ -27,7 +27,7 @@ export default {
                 this.friends = res.body
                 console.log(res.body)
             },err=>{})
-        }
+        },
     }
 }
 </script>
@@ -43,11 +43,11 @@ export default {
     color: #ffffff;
     width: 100px;
     height: 100px;
-    margin-top: 20px;
     margin-right: 20px;
     padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 </style>

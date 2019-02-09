@@ -1,0 +1,91 @@
+.md body {
+    min-width: 1012px;
+    word-wrap: break-word;
+    background-color: #fff;
+    color: #24292e;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    font-size: 14px;
+    line-height: 1.5; }
+    .md * {
+      box-sizing: border-box; }
+    .md b, .md strong {
+      font-weight: 600; }
+    .md s, .md strike, .md del {
+      text-decoration: line-through; }
+    .md i, .md cite, .md em, .md var, .md address, .md dfn {
+      font-style: italic; }
+    .md blockquote {
+      border-left: 0.25em solid #dfe2e5;
+      color: #6a737d;
+      padding: 0 1em;
+      margin-left: 0; }
+    .md h1, .md h2 {
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: 0.3em; }
+    .md h1, .md h2, .md h3, .md h4, .md h5, .md h6 {
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      margin-top: 24px; }
+    .md h1 {
+      font-size: 2em; }
+    .md h2 {
+      font-size: 1.5em; }
+    .md h3 {
+      font-size: 1.25em; }
+    .md h4 {
+      font-size: 1em; }
+    .md h5 {
+      font-size: 0.875em; }
+    .md h6 {
+      color: #6a737d;
+      font-size: 0.85em; }
+    .md ul {
+      padding-left: 2em; }
+    .md blockquote, .md dl, .md ol, .md p, .md pre, .md table, .md ul {
+      margin-bottom: 16px;
+      margin-top: 0; }
+    .md li {
+      display: list-item;
+      text-align: -webkit-match-parent; }
+    .md a {
+      color: #0366d6;
+      text-decoration: none; }
+    .md a:hover {
+      text-decoration: underline; }
+    .md p code, .md tt {
+      background-color: rgba(27, 31, 35, .05);
+      border-radius: 3px;
+      font-size: 85%;
+      margin: 0;
+      padding: 0.2em 0.4em; }
+    .md pre {
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      font-size: 85%;
+      line-height: 1.45;
+      overflow: auto;
+      padding: 16px;
+      word-wrap: normal; }
+    .md table {
+      display: block;
+      overflow: auto;
+      width: 100%; }
+    .md table {
+      border-collapse: collapse;
+      border-spacing: 0; }
+    .md table tr {
+      background-color: #fff;
+      border-top: 1px solid #c6cbd1; }
+    .md table td, .md table th {
+      border: 1px solid #dfe2e5;
+      padding: 6px 13px; }
+    .md table th {
+      font-weight: 600; }
+    .md table tr:nth-child(2n), .md table thead tr {
+      background-color: #f6f8fa; }
+    .md img {
+      background-color: #fff;
+      box-sizing: content-box;
+      max-width: 100%;
+      border-style: none; }

@@ -6,10 +6,16 @@
                 <li @click="getArticle(article.id)" v-for="article in articleList" :key="article.id">
                     <div class="top">
                     <div class="title">{{article.title}}</div>
-                        <div class="cal"><i class="material-icons">date_range</i><span>{{article.create_time}}</span></div>
+                        <div class="cal">
+                            <i class="material-icons">date_range</i>
+                            <span>{{article.create_time}}</span>
+                            <span>({{week[new Date(article.create_time).getDay()]}})</span>
+                        </div>
                     </div>
                     <div class="tags">
-                        <div v-for="tag in article.tags" :key="tag" class="tag">{{tag}}</div>
+                        <div v-for="tag in article.tags" :key="tag" class="tag">
+                            {{tag}}
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -28,6 +34,7 @@
 export default {
     data(){
         return{
+            week:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
             year: "",
             articleList: [],
         }
@@ -36,6 +43,9 @@ export default {
         var today = new Date()
         this.year = today.getFullYear()
         this.getArticleList()
+    },
+    destroyed:function(){
+        this.articleList=[]
     },
     watch: {    //监听路由变化
         "$route":function(to,from){
@@ -82,28 +92,27 @@ export default {
 .article-list{
     background-color: #ffffff;
     padding: 20px;
+    box-shadow: 1px 1px 1px #bbb;
+    overflow: hidden;
 }
 .year .this-year{
     font-size: 30px;
-    color: #999;
+    color: #bbb;
     float: left;
+    margin-top: 10px;
 }
 .year ul{
     margin: 0%;
-    margin-left: 100px;
+    margin-left: 80px;
 }
 .year ul li{
     border-bottom: 1px solid #ccc;
-    padding: 6px 5px;
+    padding: 8px 5px;
     display: flex;
     flex-direction: column;
+    color: #888;
     transition: transform 1s;
     -webkit-transition: -webkit-transform 1s;
-}
-.year ul li:hover{
-    border-bottom: 1px solid #555;
-    /* transform: rotateX(20deg);
-    -webkit-transform: rotateX(20deg); */
 }
 .year ul li .top{
     display: flex;
@@ -115,24 +124,29 @@ export default {
 }
 .year ul li .top .cal{
     margin-top: 5px;
+    color: #26a69a;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 .year ul li .top .cal span{
     margin-left: 5px;
+    padding-top: 5px;
 }
 .year ul li .tags{
     overflow: hidden;
-    margin-top: 4px;
+    margin-top: 25px;
 }
 .year ul li .tags .tag{
     float: right;
     margin:0% 4px;
-    background-color: #cc8167;
     padding: 0% 2px;
     padding-right: 5px;
+    padding-bottom: 3px;
     font-size: 12px;
+    height: 16px;
+    line-height: 22px;
+    background-color: #0d47a1;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     color: #ffffff;
@@ -144,7 +158,7 @@ export default {
     height: 5px;
     width: 5px;
     float: left;
-    margin-top: 6px;
+    margin-top: 7px;
     margin-right: 5px;
 }
 .not-content{

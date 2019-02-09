@@ -2,16 +2,15 @@
 <div class="nav">
 <div class="head">
     <div class="avatar">
-        <router-link to="/"><img src="https://avatars1.githubusercontent.com/u/35909137?s=400&u=9dd8afe3ff9acc78ea474b5d54e879ee5a50e75c&v=4" alt="myavatar"></router-link>
+        <router-link to="/"><img src="../assets/images/avatar.jpg" alt="myavatar"></router-link>
     </div>
     <div class="username">
         <router-link to="/profile"><span>csbbo</span></router-link>
-        
     </div>
 </div>
 <div class="daliy">
-    <span>{{daliy.note}}</span> 
-    <hr>
+    <p>{{daliy.content}}</p> 
+    <hr class="daliy_note" @click="show_note()">
     <ul>
         <li><router-link to="/">我的主页</router-link></li>
         <li><router-link to="/friends">友情链接</router-link></li>
@@ -19,12 +18,12 @@
     </ul>
     <hr>
     <div class="application">
-        <a href="https://github.com" target="_blank"><img src="../assets/images/link_application/github.jpg" alt="github"></a>
-        <a href="https://github.com" target="_blank"><img src="../assets/images/link_application/zhihu.jpg" alt="github"></a>
-        <a href="https://github.com" target="_blank"><img src="../assets/images/link_application/twitter.jpg" alt="github"></a>
+        <a href="https://github.com/csbbo" target="_blank"><img src="../assets/images/link_application/github.jpg" alt="github"></a>
+        <a href="https://www.zhihu.com/people/csbo-bochex/" target="_blank"><img src="../assets/images/link_application/zhihu.jpg" alt="zhihu"></a>
+        <a href="https://twitter.com/GCVVXX" target="_blank"><img src="../assets/images/link_application/twitter.jpg" alt="twitter"></a>
     </div>
 </div>
-<div class="tags" style="margin-top:20px;">
+<div class="tags" style="opacity: 1; display: block; transform: initial;">
     <div class="tag-head">
         <div class="input">
             <input ref="search" @keyup.enter="search()" type="text">
@@ -33,28 +32,13 @@
             </div>
         </div>
     </div>
-    <!-- <hr> -->
     <div class="tag-items">
         <ul>
-            <li v-on:click="tagSearch(tag.name)" v-for="tag in tags" :key="tag" class="shake-slow">
-                <i>
+            <li @click="tagSearch(tag.name)" v-for="tag in tags" :key="tag" class="shake-slow">
+                <i :class="tagSize[Math.round(Math.random()*10)%7]">
                     <a>{{tag.name}}</a>
                 </i>
             </li>
-        </ul>
-    </div>
-</div>
-<div class="extension">
-    <div class="extension-head">
-        Extension
-    </div>
-    <hr>
-    <div class="extension-item">
-        <ul>
-            <li><a href="">有道minQ</a></li>
-            <li><a href="">calculator</a></li>
-            <li><a href="">MQTT控制台</a></li>
-            <li><a href="">入侵检测警报系统</a></li>
         </ul>
     </div>
 </div>
@@ -71,6 +55,14 @@
         </ul>
     </div>
 </div>
+<!-- fixed -->
+<transition name="note">
+<div v-show="daliy_show" class="fixed">
+<div class="title">每日一句译文</div>
+<div class="content">{{daliy.note}}</div>
+<button @click="daliy_show=!daliy_show">确定</button>
+</div>
+</transition>
 </div>
 </template>
 
@@ -82,31 +74,51 @@ export default {
             tags:[],
             website:[],
             daliy:{},
+            daliy_show:false,
+            tagSize:["s0","s1","s2","s3","s4","s5","s6"],
         }
     },
     created: function(){
-        var url = this.GLOBAL.host + "/tags"
-        this.$http({
-            url:url,
-            methods:'GET',
-        }).then(function(res){
-            this.tags = res.body
-        },function(err){})
+        this.get_jingshan_daliy()
+        this.get_tags()
+        this.get_website()
+        this.get_weather()
 
-        url = this.GLOBAL.host + "/website"
-        this.$http({
-            url:url,
-            methods:'GET',
-        }).then(function(res){
-            this.website = res.body
-        },function(err){})
-
-        url = "http://open.iciba.com/dsapi/"
-        this.$jsonp(url).then(json=>{
-            this.daliy = json
-        }).catch(err=>{})
+        // 接口彩蛋
+        console.log("金山词霸API")
+        console.log("http://open.iciba.com/dsapi/")
+        console.log("和风天气API")
+        console.log("https://free-api.heweather.net/s6/weather/forecast?parameters")
+        console.log("和风天气首页https://www.heweather.com/")
+        console.log("用户名shaobo@foxmail.com")
+        console.log("百度IP查询接口")
+        console.log("http://api.map.baidu.com/location/ip?ak=4B276MB7K1r4kI85zWmNKYvzVq5aNBz4&coor=bd09ll")
     },
     methods: {
+        get_jingshan_daliy(){
+            var url = "http://open.iciba.com/dsapi/"
+            this.$jsonp(url).then(json=>{
+                this.daliy = json
+            }).catch(err=>{})
+        },
+        get_tags(){
+            var url = this.GLOBAL.host + "/tags"
+            this.$http({
+                url:url,
+                methods:'GET',
+            }).then(function(res){
+                this.tags = res.body
+            },function(err){})
+        },
+        get_website(){
+            var url = this.GLOBAL.host + "/website"
+            this.$http({
+                url:url,
+                methods:'GET',
+            }).then(function(res){
+                this.website = res.body
+            },function(err){})
+        },
         search(){
             if(this.$refs.search.value != ""){
                 this.$router.push({
@@ -127,17 +139,18 @@ export default {
                     tag: tag
                 }
             })
-        }
+        },
+        show_note(){
+            this.daliy_show = true
+        },
     }
 }
 </script>
 
+
 <style scoped>
 
 /*  */
-/* .nav{
-    padding-bottom: 20px;
-} */
 .daliy,.main-items,.tags,.extension,.website{
     background-color: #ffffff;
 }
@@ -146,18 +159,21 @@ export default {
     flex-direction: row;
     flex-wrap: wrap;
     padding: 10px 25px;
-    padding-right: 5px;
-    background-color: #4d4d4d
+    background-color: #4d4d4d;
+    box-shadow: 1px 1px 1px #999;
+    justify-content: space-around;
 }
 .head .avatar img{
     width: 66px;
     border-radius: 100%;
 }
 .head .username{
-    margin-left: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.head .username a{
+    text-decoration: none;
 }
 .head .username span{
     color: #e0e0e0;
@@ -169,9 +185,18 @@ export default {
 .daliy{
     padding: 10px 20px;
     color: #999;
+    box-shadow: 1px 1px 1px #bbb;
+}
+.daliy p{
+    margin: 0%;
+}
+.daliy .daliy_note:hover{
+    border: 1px solid #555;
 }
 .daliy ul{
     margin: 0%;
+    list-style: none;
+    padding: 0%;
 }
 .daliy ul li:hover{
     background-color: rgba(153, 153, 153, 0.404);
@@ -184,6 +209,7 @@ export default {
     width: 100%;
     color: #888;
     padding: 4px 2px;
+    text-decoration: none;
 }
 .daliy ul li a:hover:after{
     content: " ";
@@ -214,12 +240,16 @@ export default {
     width: 32px;
 }
 /* tags */
+.tags{
+    box-shadow: 1px 1px 1px #bbb;
+}
 .tags .tag-head{
     padding: 5px;
     font-size: 15px;
     text-align: center;
     color: #222;
     font-weight: 600;
+    margin-top: 20px;
 }
 .tags .tag-head .input{
     display: flex;
@@ -253,6 +283,8 @@ export default {
 }
 .tag-items ul li{
     padding: 0% 3px;
+    /* font-size: 15px; */
+    margin: 3px 2px;
 }
 .tag-items ul li i a{
     color: #999;
@@ -262,44 +294,11 @@ export default {
     border-bottom: 1px solid #999;
     color: #000;
 }
-/* extension */
-.extension{
-    padding: 0px 10px;
-    padding-bottom: 0px;
-    text-align: center;
-}
-.extension .extension-head{
-    padding: 5px;
-    font-size: 15px;
-    color: #222;
-    font-weight: 600;
-}
-.extension hr{
-    margin: 0% 10%;
-}
-.extension .extension-item ul{
-    padding: 0% 22%;
-    margin-top: 5px;
-    padding-bottom: 10px;
-}
-.extension .extension-item ul li{
-    padding: 2px 5px;
-    border: 1px solid #ffffff;
-    transition: border 1s;
-    -webkit-transition: border 1s;
-}
-.extension .extension-item ul li:hover{
-    border: 1px solid #555;
-}
-.extension .extension-item ul li a{
-    display: block;
-    width: 100%;
-    color: #555;
-    padding-bottom: 2px;
-    transition: color 0.5s;
-    -webkit-transition: color 0.5s;
-}
 /* website */
+.website{
+    margin-top: 20px;
+    box-shadow: 1px 1px 1px #bbb;
+}
 .website .website-head{
     padding: 5px;
     font-size: 15px;
@@ -317,11 +316,14 @@ export default {
     margin: 10px 0%;
     padding-left: 10px;
     padding-bottom: 10px;
+    list-style: none;
 }
 .website .website-item ul li{
     background-color: #777;
     padding: 2px;
     margin: 2px;
+    height: 20px;
+    line-height: 26px;
     transition: background-color 1s;
     -webkit-transition: background-color 1s;
 }
@@ -330,5 +332,43 @@ export default {
 }
 .website .website-item ul li a{
     color: #ffffff;
+    text-decoration: none;
+}
+.fixed{
+    position: fixed;
+    top: 0%;
+    left: 36%;
+    width: 28%;
+    background-color: #ffffff;
+    box-shadow: 1px 1px 1px #ccc;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+}
+.fixed .title{
+    border-bottom: 1px solid #ccc;
+    padding: 2px;
+}
+.fixed .content{
+    padding: 2px;
+    padding-top: 8px;
+}
+.fixed button{
+    float: right;
+    width: 55px;
+    border: none;
+    outline: none;
+    transition:background-color 1s;
+	-webkit-transition:background-color 1s;
+}
+.fixed button:hover{
+    background-color: #555;
+    color: #ffffff;
+}
+.note-enter-active, .note-leave-active {
+  transition: opacity 1s;
+}
+.note-enter, .note-leave-to{
+  opacity: 0;
 }
 </style>

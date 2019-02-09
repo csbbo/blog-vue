@@ -1,5 +1,4 @@
 import Vue from 'vue'
-// import VueMarkdown from 'vue-markdown'
 import VueResource from 'vue-resource'
 import VueJsonp  from  'vue-jsonp'
 import App from './App.vue'
