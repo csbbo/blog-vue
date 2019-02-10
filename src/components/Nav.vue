@@ -371,4 +371,44 @@ export default {
 .note-enter, .note-leave-to{
   opacity: 0;
 }
+@media screen and (max-width:1000px) {
+    .head{
+        padding: 10px 5px;
+        justify-content: left;
+    }
+    .head .username{
+        margin-left: 15px;
+    }
+    .daliy{
+        padding: 10px 0px;
+    }
+    .daliy p{
+        margin: 20px;
+        margin-left: 2px;
+    }
+    .daliy .application{
+        justify-content: left;
+        margin-left: 0;
+    }
+    .daliy .application a img{
+        margin-left: 10px;
+    }
+    .tags .tag-head .input{
+        margin: 5px 0;
+    }
+    .tags .tag-head .input input{
+        height: 22px;
+        margin-left: 10px;
+        width: 80%;
+        outline: none;
+        border: none;
+        text-decoration: none;
+    }
+    .tags .tag-head .input .input-search{
+        display: none;
+    }
+    .website hr{
+        margin: 0;
+    }
+}
 </style>

@@ -109,4 +109,18 @@ body{
     text-align: center;
     /* clear: both; */
 }
+@media screen and (max-width:1000px) {
+    .content{
+        margin: 0;
+    }
+    .left-nav{
+        width: 100%;
+        float: none;
+    }
+    .right-content{
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+}
 </style>

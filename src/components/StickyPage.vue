@@ -270,4 +270,19 @@ export default {
 .seconds-container {
   transition: transform 0.2s cubic-bezier(.4,2.08,.55,.44);
 }
+@media screen and (max-width:1000px) {
+    .sticky-page{
+        float: none;
+        position:static;
+        width: 100%;
+        padding-top: 8px;
+        padding-bottom: 20px;
+    }
+    .clock-container{
+       display: none;
+    }
+    .extension hr{
+        margin: 0;
+    }
+}
 </style>
